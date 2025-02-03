@@ -20,4 +20,12 @@ public class FolderEntity {
 
     @OneToMany(mappedBy = "folder", cascade = CascadeType.ALL)
     private List<FileEntity> files;
+
+    // Lägg till stöd för undermappar
+    @ManyToOne
+    @JoinColumn(name = "parent_folder_id")
+    private FolderEntity parentFolder;
+
+    @OneToMany(mappedBy = "parentFolder", cascade = CascadeType.ALL)
+    private List<FolderEntity> subFolders;
 }

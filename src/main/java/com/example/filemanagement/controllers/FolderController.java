@@ -15,7 +15,10 @@ public class FolderController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<FolderEntity> createFolder(@RequestParam String folderName) {
-        return ResponseEntity.ok(folderService.createFolder(folderName));
+    public ResponseEntity<FolderEntity> createFolder(
+            @RequestParam String folderName,
+            @RequestParam(required = false) Long parentFolderId) {
+        FolderEntity folder = folderService.createFolder(folderName, parentFolderId);
+        return ResponseEntity.ok(folder);
     }
 }
